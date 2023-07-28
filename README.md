@@ -5,6 +5,13 @@ sub-system in the Linux kernel
   
 Build
 =====
+우분투 20.04 버전에서 apt install meson으로 meson을 설치하면 낮은 버전이 깔려서 meson compile [sub command] 가 먹지 않는다. (https://github.com/pmem/ndctl/issues/202#issue-1209017595)
+따라서 meson 높은 버전을 설치해야 위의 명령어가 먹힌다.(meson > 0.54.0)
+```
+sudo pip3 install meson
+```
+-> meson 1.2.0 버전 설치 완료 후 build 진행.
+
 
 ```
 meson setup build;
@@ -22,9 +29,6 @@ be installed by default.   For information about the required packages,
 see the "BuildRequires:" lines in ndctl.spec.in.
 
 https://github.com/pmem/ndctl/blob/master/ndctl.spec.in
-
-P.S.)
-우분투 20.04 버전에서 apt install meson으로 meson을 설치하면 낮은 버전이 깔려서 meson compile [sub command] 가 먹지 않는다. (https://github.com/pmem/ndctl/issues/202#issue-1209017595)
 
 
 Documentation
