@@ -10,7 +10,7 @@ Build
 ```
 sudo pip3 install meson
 ```
--> meson 1.2.0 버전 설치 완료 후 build 진행.
+-> meson 1.2.0 버전 설치 완료 후 처음 meson setup부터 진행.
 
 
 ```
