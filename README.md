@@ -30,6 +30,32 @@ see the "BuildRequires:" lines in ndctl.spec.in.
 
 https://github.com/pmem/ndctl/blob/master/ndctl.spec.in
 
+설치 잘 되었는지 명령어로 확인 했을때 발생가능한 문제들
+============
+설치된 명령어(ndctl / daxctl / cxl..)들을 실행시켜봤을때 이런 오류가 발생할 수도 있다.
+
+```
+cpl@garage:~/Downloads/ndctl$ ndctl
+ndctl: /lib/x86_64-linux-gnu/libndctl.so.6: version `LIBNDCTL_24' not found (required by ndctl)
+ndctl: /lib/x86_64-linux-gnu/libndctl.so.6: version `LIBNDCTL_27' not found (required by ndctl)
+ndctl: /lib/x86_64-linux-gnu/libndctl.so.6: version `LIBNDCTL_26' not found (required by ndctl)
+ndctl: /lib/x86_64-linux-gnu/libndctl.so.6: version `LIBNDCTL_28' not found (required by ndctl)
+ndctl: /lib/x86_64-linux-gnu/libndctl.so.6: version `LIBNDCTL_23' not found (required by ndctl)
+ndctl: /lib/x86_64-linux-gnu/libndctl.so.6: version `LIBNDCTL_25' not found (required by ndctl)
+```
+
+이런 경우에는 /lib/x86_64-linux-gnu 경로에서 기존의 lib파일을 지워주면 된다. (위의 예시에서 기존의 lib파일은 libndctl.so.6이다.)
+
+```
+cpl@garage:/lib/x86_64-linux-gnu$ ll | grep libndctl
+lrwxrwxrwx   1 root root       18 11월  3  2019 libndctl.so.6 -> libndctl.so.6.16.0
+-rw-r--r--   1 root root   139040 11월  3  2019 libndctl.so.6.16.0
+
+cpl@garage:/lib/x86_64-linux-gnu$ sudo rm libndctl.so.6
+
+cpl@garage:/lib/x86_64-linux-gnu$ ll | grep libndctl
+-rw-r--r--   1 root root   139040 11월  3  2019 libndctl.so.6.16.0
+```
 
 Documentation
 =============
